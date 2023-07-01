@@ -98,5 +98,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Acknowledgements
 
-- <a href="https://github.com/Mohammad-Faisal/professional-express-sequelize-docker-boilerplate">Mohammad Faisal</a>
-- <a href="https://paystack.com">Paystack</a>
+- <a href="https://nestjs.com/">NestJS</a>
+- <a href="https://wanago.io/courses/api-with-nestjs/">Marcin Wanago</a>
