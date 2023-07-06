@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 
 import LoginDto from './dto/login.dto';
@@ -12,6 +12,8 @@ import { CookieOptions } from 'express';
 
 @Injectable()
 class AuthenticationService {
+  private readonly logger = new Logger(AuthenticationService.name);
+
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
@@ -49,6 +51,7 @@ class AuthenticationService {
       });
       return createdUser;
     } catch (error) {
+      this.logger.error(`Error occured registering a user: ${error.message}`);
       throw new HttpException(
         'Something went wrong',
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -64,6 +67,9 @@ class AuthenticationService {
 
       return foundUser;
     } catch (error) {
+      this.logger.error(
+        `Error occured authenticating a user: ${error.message}`,
+      );
       throw new HttpException(
         'Wrong credentials provided',
         HttpStatus.BAD_REQUEST,
